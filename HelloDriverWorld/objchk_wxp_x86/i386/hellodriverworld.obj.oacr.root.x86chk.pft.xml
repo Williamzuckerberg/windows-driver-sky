@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<DEFECTS>
-<OACRDEFECTCOUNT>2</OACRDEFECTCOUNT>
-<OACRERRORCOUNT>0</OACRERRORCOUNT>
-<DEFECT _seq="1"><SFA><LINE>10</LINE><COLUMN>32</COLUMN><FILENAME>hellodriverworld.c</FILENAME><FILEPATH>d:\projects\hellodriverworld\</FILEPATH></SFA><DEFECTCODE>28155</DEFECTCODE><DESCRIPTION>The function being assigned or passed should be a DRIVER_UNLOAD function:  Add the declaration 'DRIVER_UNLOAD Driver_Unload;' before the current first declaration of Driver_Unload.</DESCRIPTION><FUNCTION>DriverEntry</FUNCTION><FUNCLINE>5</FUNCLINE><PATH/></DEFECT>
-<DEFECT _seq="2"><SFA><LINE>10</LINE><COLUMN>19</COLUMN><FILENAME>hellodriverworld.c</FILENAME><FILEPATH>d:\projects\hellodriverworld\</FILEPATH></SFA><DEFECTCODE>28175</DEFECTCODE><DESCRIPTION>The 'DriverUnload' member of _DRIVER_OBJECT should not be accessed by a driver:  Access to this member may be permitted for certain classes of drivers. See the documentation for this warning for more information.</DESCRIPTION><FUNCTION>DriverEntry</FUNCTION><FUNCLINE>5</FUNCLINE><PATH/></DEFECT>
-</DEFECTS>
