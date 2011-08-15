@@ -18,8 +18,8 @@ NTSTATUS CreateTheDevice(IN PDRIVER_OBJECT pDeviceObject);
 NTSTATUS ddk_DispatchRoutine_CONTROL(IN PDEVICE_OBJECT pDevobj,IN PIRP pIrp	);//派遣函数
 
 //读取当前SSDT中函数的地址
-VOID asmReadSSDT();
-VOID cReadSSDT();
+ULONG asmReadSSDT();
+ULONG cReadSSDT();
 
 //读取系统中函数的地址
-VOID getSystemCallAddr();
+ULONG getSystemCallAddr();
