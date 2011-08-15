@@ -1,0 +1,13 @@
+#下边这行指定生成驱动名字SSDTRead.sys
+TARGETNAME=SSDTRead
+#下边这行指定生成文件的类型DRIVER指驱动
+TARGETTYPE=DRIVER
+#下边这行指定生成驱动所在的路径\SYS\SSDTRead.sys
+TARGETPATH=SYS
+#下边这行指定相关头文件所在目录路径
+INCLUDES=$(WDKPATH)\inc;\
+      $(WDKPATH)\inc\ddk;\
+
+##上边必空一行D:\WINDDK\3790.1830 等价$(WDKPATH)，在系统环境变量里，如果没有自己添加
+#下边这行指定驱动源代码*.cpp或者*.c
+SOURCES=SSDTRead.c\ 
