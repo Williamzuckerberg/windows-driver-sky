@@ -103,7 +103,7 @@ NTSTATUS ddk_DispatchRoutine_CONTROL(IN PDEVICE_OBJECT pDevobj,IN PIRP pIrp	)
 
 //读取SSDT
 #pragma PAGECODE
-VOID asmReadSSDT()
+ULONG asmReadSSDT()
 {
 
 	ULONG SSDT_NtOpenProcess_Cur_Addr;
@@ -123,9 +123,11 @@ __asm
 	pop eax
 }
 	KdPrint(("NtOpenProcess Current address is:%x", SSDT_NtOpenProcess_Cur_Addr));
+	
+	return SSDT_NtOpenProcess_Cur_Addr;
 }
 
-VOID cReadSSDT()
+ULONG cReadSSDT()
 {
 	LONG *SSDT_Adr,SSDT_NtOpenProcess_Cur_Addr,t_addr; 
 	//读取SSDT表中索引值为0x7A的函数
@@ -136,13 +138,17 @@ VOID cReadSSDT()
 	KdPrint(("当前t_addr+0x7A*4=%x \n",SSDT_Adr)); 
 	SSDT_NtOpenProcess_Cur_Addr=*SSDT_Adr;	
 	KdPrint(("当前SSDT_NtOpenProcess_Cur_Addr地址为%x \n",SSDT_NtOpenProcess_Cur_Addr));
+	
+	return SSDT_NtOpenProcess_Cur_Addr;
 }
 
-VOID getSystemCallAddr()
+ULONG getSystemCallAddr()
 {
 	UNICODE_STRING Old_NtOpenProcess;
     ULONG Old_Addr;
 	RtlInitUnicodeString(&Old_NtOpenProcess,L"NtOpenProcess");
 	Old_Addr=(ULONG)MmGetSystemRoutineAddress(&Old_NtOpenProcess);//取得NtOpenProcess的地址
 	KdPrint(("取得原函数NtOpenProcess的值为 %x",Old_Addr));
+	
+	return Old_Addr;
 }
