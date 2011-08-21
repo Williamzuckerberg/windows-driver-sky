@@ -3,6 +3,7 @@
 #pragma  INITCODE
 JMPCODE oldCode;    //用来存放当前地址前5字节指令，用来还源curCode被修改后的值
 PJMPCODE curCode;   //用来存放当前地址前5字节指令，用来被修改
+bool isHOOK = false;
 int DriverEntry(PDRIVER_OBJECT pDriverObject,PUNICODE_STRING RegistryPath)
 {
 	ULONG cur_Addr,old_Addr;
@@ -14,6 +15,7 @@ int DriverEntry(PDRIVER_OBJECT pDriverObject,PUNICODE_STRING RegistryPath)
 	
 	if (cur_Addr != old_Addr)
 	{
+	isHOOK = true;
 		KdPrint(("Have be hooked!"));
 		
 	    //保存当前地址前5字节指今
@@ -67,6 +69,8 @@ VOID Driver_Unload(IN PDRIVER_OBJECT pDriverObject)
 	PDEVICE_OBJECT pDevObj;
 	UNICODE_STRING symLinkName;
 	
+	if (isHOOK)
+	{
 	__asm //去掉页面保护
 		{
 			cli
@@ -86,6 +90,7 @@ VOID Driver_Unload(IN PDRIVER_OBJECT pDriverObject)
 			or  eax,10000h //or eax,not 0FFFEFFFFh
 			mov cr0,eax
 			sti
+		 }
 		 }
 		
 	pDevObj = pDriverObject->DeviceObject;

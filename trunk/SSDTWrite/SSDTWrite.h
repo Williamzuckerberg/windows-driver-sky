@@ -13,13 +13,13 @@ typedef struct _ServiceDescriptorTable {
 }*PServiceDescriptorTable;  
 extern PServiceDescriptorTable KeServiceDescriptorTable;
 
-//#pragma pack(1)
+#pragma pack(1)
 typedef struct _JMPCODE
 {
 	BYTE E9;
 	ULONG JMPADDR;//88881234=B
 }JMPCODE,*PJMPCODE;
-//#pragma pack()
+#pragma pack()
 
 #pragma INITCODE
 VOID Driver_Unload(IN PDRIVER_OBJECT pDriverObject);
