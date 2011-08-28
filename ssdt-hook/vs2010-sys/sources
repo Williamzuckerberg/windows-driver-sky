@@ -1,0 +1,6 @@
+TARGETNAME=SSDTHook
+TARGETTYPE=DRIVER
+
+SOURCES=stdafx.cpp \
+	SSDTHook.cpp \
+        hook.cpp
